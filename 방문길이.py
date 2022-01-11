@@ -17,4 +17,3 @@ def solution(dirs):
 
 print(solution("ULURRDLLU"))
 # 0,0 시작 (-5,-5)
-
