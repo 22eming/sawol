@@ -12,6 +12,7 @@ def solution(distance, rocks, n):
             if interval >= mid:
                 cnt += 1
                 last_value = rocks[i]
+                
         # 마지막 징검다리 검사
         if rocks[-1] - last_value >= mid and distance - rocks[-1] >= mid:
             cnt += 1
