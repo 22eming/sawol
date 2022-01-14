@@ -1,5 +1,5 @@
 import sys
-sys.setrecursionlimit = 10**9
+sys.setrecursionlimit(200001)
 
 def recur_room(room, full_room):
     if room not in full_room:
