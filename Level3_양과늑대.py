@@ -1,17 +1,30 @@
 from collections import defaultdict
 from collections import deque
+from turtle import right
 
 
 def solution(info, edges):
     answer = 0
     node = defaultdict(list)
+
     for p, c in edges:
         node[p].append(c)
 
-    stack = deque([0])
-    print(stack.popleft())
-    print(stack)
     sheep, wolf, s_and_w = [], [], []
+    stack = deque([0])
+    while stack:
+        n = stack.popleft()
+        left, right = node[n]
+        # 양 양
+        if info[left] == 0 and info[right] == 0:
+            pass
+        # 늑대 늑대
+        elif info[left] == 1 and info[right] == 1:
+            pass
+        # 양 늑대
+        else:
+            pass
+
     return answer
 
 
