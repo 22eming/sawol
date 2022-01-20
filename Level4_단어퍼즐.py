@@ -17,12 +17,8 @@ def solution(strs, t):
                 if t[s:i] in str_dic[t[i-1]]:
                     dp[i] = min(dp[i], dp[s]+1)
 
-    return -1 if dp[-1] == 'inf' else dp[-1]
+    return -1 if dp[-1] == float('inf') else dp[-1]
     
-
-
-
-
 
 # print(solution(["ba","na","n","a"],	"banana"))
 # print(solution(["app","ap","p","l","e","ple","pp"],	"apple"))
