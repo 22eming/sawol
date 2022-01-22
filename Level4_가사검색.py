@@ -32,7 +32,7 @@ def solution(words, queries):
 
     trie = mk_trie({}, words)
     rev_trie = mk_trie({}, rev_w)
-
+    
     for q in queries:
         if q[0] == '?':
             if q[-1] == '?':
