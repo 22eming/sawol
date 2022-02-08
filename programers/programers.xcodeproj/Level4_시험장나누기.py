@@ -1,3 +1,5 @@
+import sys
+sys.setrecursionlimit(10001)
 tree = {}
 cnt = 0
 people = []
@@ -28,6 +30,7 @@ def dfs(root, lim):
 def solution(k, num, links):
     global cnt, people, tree
     p = [False] * (len(num)+1)
+
     for idx, link in enumerate(links):
         _left, _right = link
         tree[idx] = (_left, _right)
@@ -42,7 +45,6 @@ def solution(k, num, links):
     e = _sum
     while s < e:
         mid = (s + e) // 2
-        print(mid)
         dfs(root, mid)
         if  cnt < k:
             e = mid
