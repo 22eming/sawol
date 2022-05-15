@@ -1,0 +1,6 @@
+train: ../datasets/coco/images/train
+val: ../datasets/coco/images/val
+test: ../datasets/coco/images/test
+
+nc: 1
+names: ['cat']
