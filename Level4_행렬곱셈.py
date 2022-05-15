@@ -1,35 +1,23 @@
-from collections import defaultdict
+def solution(mat):
+    n = len(mat)
+    dp = [ [float('inf')]*n for _ in range(n)]
 
-def matrix_multi(sorted_mid, matrix):
-    for mid, cnt in sorted_mid:
-        for _ in range(cnt):
-            # cnt가 1이 아닐때 col, row 값 골라야함
-            pass
+    for idx in range(n):
+        dp[idx][idx] = 0
 
-def solution(matrix_sizes):
-    answer = float('inf')
-    _matrix = defaultdict(list)
-    _mid = defaultdict(int)
-    wait_col, wait_row = set(), set()
-    for col, row in matrix_sizes:
-        # col, row 구별 필요
-        _matrix[col].append(row)
-        _matrix[row].append(col)
+    for gap in range(1, n):
+        for start in range(n-gap):
+            if gap == 1: # gap이 1일 때
+                dp[start][start+1] = mat[start][0] * mat[start][1] * mat[start+1][1]
+                continue
+            end = start + gap
+            for station in range(start, end):
+                dp[start][end] = min(dp[start][end],
+                                dp[start][station] + dp[station+1][end] + (mat[start][0] * mat[station][1] * mat[end][1]) )
 
-        if col in wait_col:
-            _mid[col] += 1
-        else:
-            wait_row.add(col)
+    return dp[0][-1]
 
-        if row in wait_row:
-            _mid[row] += 1
-        else:
-            wait_col.add(row)
-    
-    print(sorted(_mid.items(), reverse=True ))
-    print(_matrix.items())
-    return answer
+# dp[s][e] 의 최소값?
+    # dp[s][중간값] + dp[중간값+1][e] + (중간값 합치는 비용)
 
-# 중간값이 큰 값 먼저 계산
-
-print(solution([ [10,3], [10,5], [4, 10], [7, 10], [4, 7] ]))
+print(solution([[5,3],[3,10],[10,6]]))
