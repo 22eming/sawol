@@ -1,29 +1,30 @@
 def solution(lines):
-    answer = 0
-    log = []
+    start, end = [], []
     for line in lines:
-        (day, time, dt) = line.split(" ")
-        (h, m, s) = time.split(":")
-
-        t = float(h)*3600 + float(m)*60 + float(s)
-        dt = float(dt[:-1])
-
-        start = t-dt+0.001
-        end = t+1
-
-        log.append([start, end])
-
-    idx = 0
-    for start, end in log:
-        cnt = 0
-        for s, e in log[idx:]:
-            if end > s:
-                cnt += 1
-            if end+4 < e:
-                break
-        answer = max(cnt, answer)
-        idx += 1
-    return answer
+        d, t, p = line.split()
+        h, m, s = map(float, t.split(":"))
+        
+        p = float(p[:-1])
+        seconds = h * 3600 + m * 60 + s
+        
+        start.append(seconds - p + 0.001)
+        end.append(seconds+1)
+    
+    start.sort()
+    answer = 1
+    cur_traf, max_traf = 0, 0
+    cnt_s, cnt_e = 0, 0
+    
+    while cnt_s < len(lines) and cnt_e < len(lines):
+        if start[cnt_s] < end[cnt_e]:
+            cur_traf += 1
+            max_traf = max(cur_traf, max_traf)
+            cnt_s += 1
+        else:
+            cnt_e += 1
+            cur_traf -= 1
+    
+    return max_traf
 
 
 print(solution([
